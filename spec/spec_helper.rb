@@ -120,7 +120,13 @@ def create_rsa_key
   OpenSSL::PKey::RSA.new(key_bits)
 end
 
-def create_root_certificate(key)
+def create_ec_key
+  OpenSSL::PKey::EC.generate("prime256v1")
+end
+
+X509_V3 = 2
+
+def create_root_certificate(key, not_before: Time.now - 1, not_after: Time.now + 60)
   certificate = OpenSSL::X509::Certificate.new
   common_name = "Root-#{rand(1_000_000)}"
 

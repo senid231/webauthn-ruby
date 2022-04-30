@@ -34,7 +34,6 @@ module WebAuthn
       super(**options)
 
       @attestation_object_bytes = attestation_object
-      @relying_party = relying_party
     end
 
     def verify(expected_challenge, expected_origin = nil, user_verification: nil, rp_id: nil)
